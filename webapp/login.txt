@@ -1,0 +1,1 @@
+The default user is admin. To login go to yoursite/index.html. If you are having problems, make sure your login.php file is correctly configured.

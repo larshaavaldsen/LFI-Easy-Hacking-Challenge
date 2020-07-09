@@ -1,0 +1,1 @@
+To use the admin panel, login. From there you can use the the panel to make requests to execute commands on our server using our secure api (found at yourdomain/api)!
