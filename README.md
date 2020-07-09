@@ -17,7 +17,7 @@ In the help center, we see three links, each to a different page in the help cen
 If we inspect the url of the login help page, we can see the url is passing the variable named ‘help’ to the page, and the value of that variable is ‘login.txt’. We can interpret this to be the website displaying the contents of a file called ‘login.txt’. Maybe there is some way we could display other files that could help us hack this website?
 
  
- ### Step two: Leaking the code
+ ### Step two: Exploiting the LFI and Setting the cookie
  If we swap ‘login.txt’ for ‘login.php’ (the page we determined to be handling the logins earlier), we get some funky output, but if we view the source of the page, we see:
 
 ```php
@@ -36,5 +36,9 @@ else{
     header('Location: ' . $_SERVER['HTTP_REFERER']);
 }
 ```
- 
+It seems that whatever lazy developer made this website only decided to use the username encoded as base64 to manage logins. Also note that this page, once properly logged in links to a page known as home.php. If we look at that page we can see that we don’t have access to it. So let's set a cookie with the name ‘user’, and the value as ‘admin’ base64 encoded using the inspect element storage tool in Firefox. After we set the cookie, if we try and access the home.php page, we can see that we have completed the challenge. Good work!
+
+### Extra challenge
+There are a few other ways to exploit this webapp that I have not outlined in this walkthrough. Take a look at the code again and see if you can get the admin password!
+
 </details>
